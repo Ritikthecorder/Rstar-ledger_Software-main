@@ -1,0 +1,175 @@
+Build a full-stack, production-grade Ledger Management Web Application using Supabase as the backend (no custom Express backend).
+
+TECH STACK:
+
+- Frontend: React (TypeScript) + Vite
+- Styling: Tailwind CSS + ShadCN UI
+- State Management: Zustand
+- Charts: Recharts
+- Backend/DB/Auth: Supabase (PostgreSQL + Auth + Storage)
+
+CORE REQUIREMENTS:
+
+1. AUTHENTICATION (Supabase Auth):
+
+- Google OAuth login
+- Phone number OTP login (optional)
+- Email/password login (optional)
+- Persistent sessions
+- Logout functionality
+- Protected routes (only logged-in users can access dashboard)
+
+2. DATABASE DESIGN (Supabase PostgreSQL):
+   Create tables:
+
+- users (handled by Supabase Auth)
+
+- customers:
+  
+  - id (uuid, primary key)
+  - user_id (foreign key)
+  - name
+  - phone
+  - email
+  - address
+  - opening_balance
+  - created_at
+
+- transactions:
+  
+  - id (uuid, primary key)
+  - user_id (foreign key)
+  - customer_id (foreign key)
+  - type (credit/debit)
+  - amount
+  - description
+  - payment_mode (cash/upi/bank/card)
+  - reference_id
+  - date
+  - created_at
+
+- settings:
+  
+  - id
+  - user_id
+  - business_name
+  - currency
+  - theme
+
+3. ROW LEVEL SECURITY (IMPORTANT):
+
+- Enable RLS in Supabase
+- Ensure users can only access their own data
+- Policies for:
+  - customers
+  - transactions
+  - settings
+
+4. DASHBOARD:
+
+- Show:
+  - Total Balance
+  - Total Credit
+  - Total Debit
+  - Number of Customers
+- Charts:
+  - Monthly credit/debit graph
+- Recent transactions list
+
+5. CUSTOMER MANAGEMENT:
+
+- Add/Edit/Delete customers
+- Customer profile page:
+  - Full transaction history
+  - Running balance
+- Search and filter customers
+
+6. TRANSACTION MANAGEMENT:
+
+- Add/Edit/Delete transactions
+- Auto update running balance
+- Filters:
+  - Date range
+  - Type (credit/debit)
+  - Customer
+
+7. LEDGER SYSTEM:
+
+- Individual customer ledger view
+- Global ledger view
+- Opening & closing balance calculation
+- Print-friendly layout
+
+8. REPORTS:
+
+- Daily / Monthly reports
+- Customer outstanding balances
+- Cash flow summary
+
+9. EXPORT FEATURES:
+
+- Export ledger to:
+  - PDF
+  - Excel (CSV)
+- Downloadable reports
+
+10. UI/UX (PREMIUM):
+
+- Sidebar layout
+- Responsive design (mobile + desktop)
+- Dark/Light mode
+- Toast notifications
+- Loading skeletons
+- Clean SaaS-style interface
+
+11. STORAGE (Supabase Storage):
+
+- Optional file attachments for transactions (receipts, bills)
+
+12. SETTINGS:
+
+- Business name
+- Currency selection
+- Theme toggle
+
+13. OFFLINE SUPPORT (LIMITED):
+
+- Cache last data using local storage
+- Basic offline viewing (no sync)
+
+14. PERFORMANCE:
+
+- Use pagination
+- Lazy loading
+- Optimized queries
+
+15. PROJECT STRUCTURE:
+    /src
+    /components
+    /pages
+    /hooks
+    /store
+    /lib (Supabase client)
+    /types
+
+16. SUPABASE INTEGRATION:
+
+- Initialize Supabase client
+- Use environment variables:
+  VITE_SUPABASE_URL
+  VITE_SUPABASE_ANON_KEY
+
+17. DELIVERABLES:
+
+- Complete working frontend code
+- Supabase setup steps
+- SQL schema
+- RLS policies
+- Deployment steps (Vercel)
+
+IMPORTANT:
+
+- Do NOT use Express backend
+- Use Supabase for all backend operations
+- Code should be modular and production-ready
+- Ensure clean UI like a premium SaaS product
